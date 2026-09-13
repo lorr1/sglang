@@ -296,7 +296,9 @@ class TestHiCacheStagedWriteBackDispatch(CustomTestCase):
         pipeline._cache._resolve_storage_prefetch_tokens.assert_called_once_with(
             handle, 4
         )
-        pipeline.release_staged_hold.assert_called_once_with(handle, reason="shrunk")
+        pipeline.release_staged_hold.assert_called_once_with(
+            handle, reason="aux_window_trim"
+        )
 
     def test_l2_transfer_maps_global_layers(self):
         host_pool = mock.Mock()

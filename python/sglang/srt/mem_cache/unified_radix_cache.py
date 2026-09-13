@@ -2409,7 +2409,7 @@ class UnifiedRadixCache(BasePrefixCache):
         self._storage_prefetch_hit_remaining_by_reqid.pop(request, None)
 
     def _handle_storage_prefetch_anchor_loss(self, request: CacheRequestHandle) -> None:
-        self._finish_storage_prefetch(request, fulfilled_tokens=0, reason="shrunk")
+        self._finish_storage_prefetch(request, fulfilled_tokens=0, reason="anchor_lost")
         # The span is still L3-resident; retry from the shorter live match.
         self._storage_prefetch_missed_rids.add(request)
         self.revoke_pending_prefetch(request)
